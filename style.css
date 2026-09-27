@@ -1,0 +1,262 @@
+/* ==========================================================================
+   1. ГЛОБАЛЬНЫЕ СТИЛИ (Сброс и Базовые настройки)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. ШАПКА И ПОДВАЛ (Header & Footer)
+   ========================================================================== */
+header {
+    background-color: #121212;
+    border-bottom: 2px solid #ff6600;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    color: #ff6600;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+footer {
+    background-color: #121212;
+    border-top: 1px solid #222222;
+    padding: 15px;
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+    margin-top: auto; /* Прижимает подвал к самому низу страницы */
+}
+
+/* ==========================================================================
+   3. ОСНОВНОЙ КОНТЕНТ И КАРТОЧКИ (Main & Ads)
+   ========================================================================== */
+main {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.ad {
+    background-color: #121212;
+    border: 1px solid #222222;
+    border-left: 4px solid #ff6600;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ad:hover {
+    transform: translateY(-3px);
+    border-color: #ff6600;
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.1);
+}
+
+.ad h3 {
+    margin-bottom: 10px;
+    color: #ff6600;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+.ad p {
+    color: #cccccc;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   4. КНОПКА ОТКРЫТИЯ МОДЛКИ («+»)
+   ========================================================================== */
+#add {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #ff6600;
+    color: #000000;
+    border: none;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 102, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    z-index: 999;
+}
+
+#add:hover {
+    transform: scale(1.1) rotate(90deg);
+    background-color: #ff8533;
+    box-shadow: 0 6px 25px rgba(255, 102, 0, 0.6);
+}
+
+#add:active {
+    transform: scale(0.95) rotate(90deg);
+}
+
+/* ==========================================================================
+   5. МОДАЛЬНОЕ ОКНО И ФОРМА (Modal & Form)
+   ========================================================================== */
+.model {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.model.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.model_content {
+    background-color: #121212;
+    border: 1px solid #ff6600;
+    border-radius: 12px;
+    padding: 35px 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 15px 40px rgba(255, 102, 0, 0.2);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close:hover {
+    color: #ff6600;
+    transform: scale(1.1);
+}
+
+#add-ad-form h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ff6600;
+}
+
+#add-ad-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #aaaaaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#add-ad-form input[type="text"],
+#add-ad-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 22px;
+    background-color: #1e1e1e;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+#add-ad-form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+#add-ad-form input[type="text"]:focus,
+#add-ad-form textarea:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.35);
+}
+
+.add-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 6px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.add-button:hover {
+    background-color: #ff8533;
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+}
+
+.add-button:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   6. СТИЛИ ДЛЯ СТРАНИЦЫ 404 (NotFound)
+   ========================================================================== */
+.notFound {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+.notFound h1 {
+    font-size: 120px;
+    color: #ff6600;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+}
+
+.notFound p {
+    color: #888888;
+    font-size: 18px;
+}
